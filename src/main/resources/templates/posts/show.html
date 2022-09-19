@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<h1>Show page here</h1>
+
+
+<div th:each="post: ${post}">
+
+    <p th:text="${post.getBody()}"/>
+    <p th:text="${post.getTitle()}"/>
+
+    <div th:each="user: ${user}">
+        <p th:text="${user.getEmail()}" />
+    </div>
+
+    <form th:action="@{|/posts/edit/${post.id}|}" method="get">
+        <button>Edit</button>
+    </form>
+
+    <form th:action="@{|/posts/${post.id}|}" th:method="post">
+        <button>Delete</button>
+    </form>
+
+</div>
+<br>
+<form action="/posts/create">
+    <button>Create</button>
+</form>
+
 </body>
 </html>

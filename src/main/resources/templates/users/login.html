@@ -2,39 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Sign up</title>
+    <title>Log In</title>
+    <div th:replace="partials/head :: head"></div>
 
-    <link rel="stylesheet" href="../CSS/Eleox.css">
 </head>
 <body>
-<div class="imgcontainer">
-    <img class="logo" src="../MISC/eleox_logo-770x205.png" alt="Avatar" class="avatar">
-</div>
 
-<div class="create-container">
-    <div class="create-container-inner">
+<div class="create-org-container-inner">
 
+    <div class="login-register">
+        <h1>Log In</h1>
 
-        <div class="login-register">
-            <h1 class="sign-in">Sign in</h1>
-
-
-            <form th:action="@{/login}" method="post">
-
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" Placeholder="enter username">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" Placeholder="enter password">
-                <br>
-                <div class="small-text">Not yet registered?
-                    <a href="/sign-up">Register here</a>
-                </div>
-                <button  onclick="user1()"class="login-register-btn" type="submit">Log In</button>
-            </form>
+        <div class="conditional" th:if="${param.error}">
+            Invalid Username and Password.
         </div>
+        <div class="conditional" th:if="${param.logout}">
+            You have been logged out.
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" />
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" />
+            <button class="login-register-btn" type="submit">Log In</button>
+            <div class="small-text">Not yet registered? <a href="/sign-up">Register here</a></div>
+        </form>
     </div>
 </div>
+
+<script th:replace="partials/script :: script"></script>
+
 </body>
-<script src="../static/Eleox.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+
 </html>

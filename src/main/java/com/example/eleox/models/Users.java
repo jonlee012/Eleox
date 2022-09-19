@@ -14,20 +14,21 @@ public class Users {
     @Column
     private String username;
 
-
+    @Column
+    private String email;
 
     @Column
     private String password;
 
     public Users(Users copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
-
+        email = copy.email;
         username = copy.username;
         password = copy.password;
     }
 
-//    @OneToMany(mappedBy = "user")
-//    private List<Post> userPost;
+    @OneToMany(mappedBy = "user")
+    private List<Post> userPost;
 
     public Users() {}
 
@@ -47,7 +48,13 @@ public class Users {
         this.username = username;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getPassword() {
         return password;
@@ -57,12 +64,12 @@ public class Users {
         this.password = password;
     }
 
-//    public List<Post> getUserPosts() {
-//        return userPost;
-//    }
-//
-//    public void setUserPosts(List<Post> userPosts) {
-//        this.userPost = userPosts;
-//    }
+    public List<Post> getUserPosts() {
+        return userPost;
+    }
+
+    public void setUserPosts(List<Post> userPosts) {
+        this.userPost = userPosts;
+    }
 
 }

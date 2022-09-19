@@ -1,20 +1,248 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Sign up</title>
+    <div th:replace="partials/head :: head"></div>
+
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
+
+        button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .a-interview {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+            padding: 0px 2px;
+        }
+
+        button:hover, a:hover {
+            opacity: 0.7;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .login-register {
+            border: 1px solid #0a0a09;
+            width: 375px;
+            height: auto;
+            margin: 5% auto;
+            padding: 30px;
+            background-color: white;
+            color: black;
+
+        }
+
+        .login-register form {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .login-register label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .login-register input {
+            border-radius: 5px;
+            border: 1px solid rgb(177, 177, 177);
+            padding: 5px;
+        }
+
+        .login-register-btn {
+            color: #050505;
+            margin-top: 5px;
+            padding: 8px 10px;
+            font-size: 11px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            font-weight: 400;
+            display: block;
+            width: 50%;
+            cursor: pointer;
+            background: rgb(107, 224, 110);
+            border: 1px solid #0e0d0d;
+            transition: .5s;
+            text-decoration: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .login-register-btn:hover {
+            background-color: rgba(255, 255, 255, 0.12);
+            /* border: 1px solid red; */
+            color: #6BE06EFF;
+        }
+
+        .create-container {
+            max-width: 100vw;
+            margin: 0 auto;
+            background-color: white;
+
+        }
+
+        .create-container-inner {
+            padding: 25px;
+            color: black;
+        }
+
+        .small-text {
+            font-size: 12px;
+            color: gray;
+        }
+
+        .sign-in {
+            text-align: center;
+
+        }
+    </style>
 </head>
 <body>
-<h1>Create an account</h1>
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="username">Username</label>
-    <input id="username" th:field="*{username}" />
+<!--<div class="imgcontainer">-->
+<!--    <img class="logo" src="../MISC/eleox_logo-770x205.png" alt="Avatar" class="avatar">-->
+<!--</div>-->
+
+<div class="create-container">
+    <div class="create-container-inner">
 
 
-    <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}" />
+        <div class="login-register">
+            <h1 class="sign-in">Sign in</h1>
 
-    <input value="Sign me up!" type="submit" />
-</form>
+            <form th:action="@{/sign-up}" method="post" th:object="${user}">
+                <label for="username">Username</label>
+                <input id="username" th:field="*{username}"/>
+
+                <label for="email">Email</label>
+                <input id="email" th:field="*{email}"/>
+
+
+                <label class="" for="password">Password</label>
+                <!--    <i-->
+                <!--        class="" -->
+                <!--        onclick="showPassword()">-->
+                <!--    -->
+                <!--</i>-->
+                <input class="form-control" id="password" name="password" type="password"
+                       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                       title="Must contain at least one number, one uppercase letter, one lowercase letter, one special character, and at least 8 or more characters"
+                       required th:field="*{password}">
+
+<!--                <input value="Sign me up!" type="submit"/>-->
+                    <button class="login-register-btn" type="submit">Sign me up!</button>
+                    <div class="small-text">Already registered? <a class="small-text" href="/login">Log-in </a>here</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--<script>-->
+<!--    var myInput = document.getElementById("password");-->
+<!--    var letter = document.getElementById("letter");-->
+<!--    var capital = document.getElementById("capital");-->
+<!--    var number = document.getElementById("number");-->
+<!--    var symbol = document.getElementById("symbol")-->
+<!--    var length = document.getElementById("length");-->
+
+<!--    // When the user clicks on the password field, show the message box-->
+<!--    myInput.onfocus = function () {-->
+<!--        document.getElementById("message").style.display = "block";-->
+<!--    }-->
+
+<!--    // When the user clicks outside of the password field, hide the message box-->
+<!--    myInput.onblur = function () {-->
+<!--        document.getElementById("message").style.display = "none";-->
+<!--    }-->
+
+<!--    // When the user starts to type something inside the password field-->
+<!--    myInput.onkeyup = function () {-->
+<!--        // Validate lowercase letters-->
+<!--        var lowerCaseLetters = /[a-z]/g;-->
+<!--        if (myInput.value.match(lowerCaseLetters)) {-->
+<!--            letter.classList.remove("invalid");-->
+<!--            letter.classList.add("valid");-->
+<!--        } else {-->
+<!--            letter.classList.remove("valid");-->
+<!--            letter.classList.add("invalid");-->
+<!--        }-->
+
+<!--        // Validate capital letters-->
+<!--        var upperCaseLetters = /[A-Z]/g;-->
+<!--        if (myInput.value.match(upperCaseLetters)) {-->
+<!--            capital.classList.remove("invalid");-->
+<!--            capital.classList.add("valid");-->
+<!--        } else {-->
+<!--            capital.classList.remove("valid");-->
+<!--            capital.classList.add("invalid");-->
+<!--        }-->
+
+<!--        // Validate numbers-->
+<!--        var numbers = /[0-9]/g;-->
+<!--        if (myInput.value.match(numbers)) {-->
+<!--            number.classList.remove("invalid");-->
+<!--            number.classList.add("valid");-->
+<!--        } else {-->
+<!--            number.classList.remove("valid");-->
+<!--            number.classList.add("invalid");-->
+<!--        }-->
+
+<!--        // Validate symbols-->
+<!--        var symbols = /[$-/:-?{-~!"^_`\[\]]/;-->
+<!--        if (myInput.value.match(symbols)) {-->
+<!--            symbol.classList.remove("invalid");-->
+<!--            symbol.classList.add("valid");-->
+<!--        } else {-->
+<!--            symbol.classList.remove("valid");-->
+<!--            symbol.classList.add("invalid");-->
+<!--        }-->
+
+<!--        // Validate length-->
+<!--        if (myInput.value.length >= 8) {-->
+<!--            length.classList.remove("invalid");-->
+<!--            length.classList.add("valid");-->
+<!--        } else {-->
+<!--            length.classList.remove("valid");-->
+<!--            length.classList.add("invalid");-->
+<!--        }-->
+<!--    }-->
+
+<!--    function showPassword() {-->
+<!--        let x = document.getElementById("password");-->
+<!--        if (x.type === "password") {-->
+<!--            x.type = "text";-->
+<!--        } else {-->
+<!--            x.type = "password";-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+<!--<script th:replace="partials/script :: script"></script>-->
+
 </body>
 </html>
