@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <title>Sign up</title>
+
     <link rel="stylesheet" href="../CSS/Eleox.css">
 </head>
 <body>
@@ -18,7 +19,7 @@
             <h1 class="sign-in">Sign in</h1>
 
 
-            <form action="" method="post">
+            <form th:action="@{/login}" method="post">
 
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" Placeholder="enter username">
